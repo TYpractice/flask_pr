@@ -1,0 +1,9 @@
+Flask == 2.3.2
+python-dotenv
+flask-sqlalchemy
+flask-migrate
+flask-mail
+flask-login
+Flask-WTF
+email_validator
+Flask-Paginate

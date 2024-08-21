@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block nav %}
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"  id = "mainNav" role="navigation">
+  <div class="container-fluid px-4 px-lg-5">
+    <a class="navbar-brand" href="{{url_for('index')}}" >TY Blog's</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle ="collapse" data-bs-target="#navbarResponsive"
+    aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('authapp.signup')}}">Signup</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('authapp.login')}}">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+
+{% block contents %}
+
+<main class="w-100 text-center">
+
+  <div class="m-6">
+
+    <h1>Sign up</h1>
+    <p>以下を入力し、会員登録をお願いいたします。</p>
+
+    <form action="{{url_for('authapp.signup')}}"
+    method="post"
+    novalidate="novalidate">
+  
+    <br>
+  
+    <!-- CSRF対策機能を有効 -->
+    {{form.csrf_token}}
+
+    <div class="form-floating">
+      {{form.username(placeholder='ユーザ名')}}
+    </div>
+
+    <div>
+      {% for error in form.username.errors %}
+      <span class="error">{{error}}</span>
+      {% endfor %}
+    </div>
+
+    <br>
+  
+    <div class="form-floating">
+      {{form.email(placeholder='メールアドレス')}}
+    </div>
+  
+    <div>
+      {% for error in form.email.errors %}
+      <span class="error">{{error}}</span>
+      {% endfor %}
+    </div>
+
+    <div>
+      {% for message in get_flashed_messages() %}
+      <p class="error">{{message}}</p>
+      {% endfor %}
+    </div>
+  
+    <br>
+  
+    <div class="form-floating">
+      {{form.password(placeholder='パスワード')}}
+    </div> 
+  
+    <div>
+      {% for error in form.password.errors %}
+      <span class="error">{{error}}</span>
+      {% endfor %}
+    </div>
+  
+    <p>
+      {{form.submit()}}
+    </p>
+
+    
+    </form>
+  
+  </div>
+    
+</main>
+
+
+{% endblock %}

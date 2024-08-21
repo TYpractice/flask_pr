@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Home_detail{% endblock %}
+
+{% block header %}
+<header class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"  id = "mainNav" role="navigation">
+  
+  <div class="container-fluid px-4 px-lg-5">
+    <a class="navbar-brand" href="{{url_for('index')}}" >TY Blog's</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle ="collapse" data-bs-target="#navbarResponsive"
+    aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto py-4 py-lg-0">
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('index')}}">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('authapp.signup')}}">Signup</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{url_for('authapp.login')}}">Login</a></li>
+
+      </ul>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block contents %}
+<div class="py-5 bg-light m-6">
+  <div class="container-fluid justify-content-center">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div>
+        <h2>{{detail.title}}</h2>
+        <p>{{detail.contents}}</p>
+        <img class="detail-imagesize" src="{{url_for('blogapp.image_file',filename= detail.image_path)}}" alt="画像">
+        <p>{{detail.username}}さんの投稿</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
